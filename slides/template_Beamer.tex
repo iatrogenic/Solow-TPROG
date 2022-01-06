@@ -1,0 +1,363 @@
+\documentclass{beamer}
+\usetheme{metropolis}
+\usepackage{hyperref, amsmath, listings, xcolor}
+
+\title{Revisiting the Solow Model}
+\author{David do Couto l56167 \\ Martim Roberto Alves da Costa l56950}
+\institute{ISEG \\ ULisboa}
+\date{}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{
+	basicstyle=\small\ttfamily,
+	columns=flexible,
+	breaklines=true    backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\begin{document}
+\begin{frame}[plain]
+    \maketitle
+\end{frame}
+
+
+\begin{frame}{Model Specification (i)}
+\begin{equation*}
+ \ln \left ( \frac{Y_{i,t}}{L_{i,t}} \right ) = \gamma + \beta_1 \ln(n_i + g_i + \delta_i) + \beta_2 \ln(s_i) + \epsilon
+\end{equation*}
+for some country $i$:
+\begin{itemize}
+	\item $\frac{Y_t}{L_t}$, total income per capita for predicted year $t$
+	\item $\gamma$, constant
+	\item $n_i$, population growth rate
+	\item $g_i$, technology advancement rate
+	\item $\delta_i$,depreciation rate of capital
+	\item $s_i$, savings rate
+	\item $\epsilon_i$, error term
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model Specification (i)}
+	\begin{equation*}
+		\ln \left ( \frac{Y_{i,t}}{L_{i,t}} \right ) = \gamma + \beta_1 \ln(n_i + g_i + \delta_i) + \beta_2 \ln(s_i) + \epsilon_i
+	\end{equation*}
+	Restrictions on coefficients:
+	\begin{itemize}
+		\item $\beta_1 = - \frac{\alpha}{1-\alpha}$ and $\beta_2 = \frac{\alpha}{1-\alpha}$
+		\item $\alpha$, physical capital's share of income
+		\item From data $\alpha \approx 0.48 \implies \frac{\alpha}{1-\alpha} \approx 0.92$
+		\item $\implies \beta_2 = \lvert \beta_1 \rvert \approx 0.92$
+	\end{itemize}
+Theoretical assumption
+\begin{itemize}
+	\item $E(\epsilon_i | s_i , n_i) = 0$
+\end{itemize}
+Econometric assumption
+\begin{itemize}
+	\item $E(\epsilon_1 | s_i, n_i, g_i, \delta_i) = 0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model Specification (ii) and (iii)}
+	\begin{equation*}
+		\ln \left ( \frac{Y_{i,t}}{L_{i,t}} \right ) = \psi + \phi_1 \ln (n_1 + g_i + \delta_i) + \phi_2 \ln(s_i) + \phi_3 \ln(h_i)+\omega_i
+	\end{equation*}
+	for some country $i$:
+	\begin{itemize}
+		\item $\psi$, constant
+		\item $h_i$, human capital index
+		\item $\omega_i$, error term
+		\item $\frac{Y_{i,t}}{L_{i,t}}$, $n_i$, $g_i$, $\delta_i$, $s_i$ defined as in specification (i)
+	\end{itemize}
+Specification of model (iii):
+	\begin{equation*}
+	\ln \left ( \frac{Y_{i,t}}{L_{i,t}} \right ) = \psi + \phi_1 \ln (n_1 + g_i + \delta_i) + \phi_2 \ln(s_i) + \phi_3 \ln(h_i^\prime)+\omega_i
+\end{equation*}
+\begin{itemize}
+	\item $h_i^\prime$, education index
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model specifications (ii) and (iii)}
+		\begin{equation*}
+		\ln \left ( \frac{Y_{i,t}}{L_{i,t}} \right ) = \psi + \phi_1 \ln (n_1 + g_i + \delta_i) + \phi_2 \ln(s_i) + \phi_3 \ln(h_i)+\omega_i
+	\end{equation*}
+Restrictions on coefficients:
+\begin{itemize}
+	\item $\phi_1 = - \frac{\alpha}{1-\alpha-\theta}$, $\phi_2 = \frac{\alpha}{1-\alpha-\theta}$ and $\phi_3 = \frac{\theta}{1-\alpha-\theta}$
+	\item $\theta$, human capital's share of income
+	\begin{itemize}
+		\item assume like Mankiw et al. (1992) $\theta = 0.33$
+		\item $\implies \lvert \phi_1 \rvert = \phi_2 = \frac{\alpha}{1-\alpha-\theta} \approx 2.53$ and $\phi_3 = \frac{\theta}{1-\alpha - \theta} \approx 1.74$
+	\end{itemize}
+\end{itemize}
+Theoretical assumption:
+\begin{itemize}
+	\item $E( \omega_i | s_i, n_i, h_i) =0$
+\end{itemize}
+Econometric assumption:
+\begin{itemize}
+	\item $E(\omega_i | s_i, n_i, g_i, \delta_i, h_i) = 0$
+\end{itemize}
+\end{frame}
+
+% Martin's slides
+
+
+% Describe the three datasets
+\begin{frame}{Data sources}
+	\begin{itemize}
+		\item World bank \begin{itemize}
+			\item Population Growth (annual \%) ($n$)
+			\item Gross capital formation (\% of GDP) ($s$)
+			\item GDP growth (annual \%) ($\approx g$)
+		\end{itemize}
+	\end{itemize}
+
+	\begin{itemize}
+		\item Penn World Table version 10.0
+		\begin{itemize}
+			\item Labour share income ($\alpha$)
+			\item Depreciating rate of capital ($\delta$)
+			\item Real GDP ($Y$)
+			\item Population ($L$)
+			\item Human Capital ($h$)
+		\end{itemize}
+	
+		\item United Nations Development Programme
+   	\begin{itemize}
+		\item Education Index ($h^\prime$)
+	\end{itemize}
+\item All data hosted at \url{https://github.com/iatrogenic/Solow-TPROG/tree/main/data}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{World Bank data}
+		\resizebox{\textwidth}{!}{%
+	\begin{tabular}{lllll}
+		country\_code & year   & gdp\_growth & pop\_growth & savings \\
+		AFG           & 1990.0 & NaN         & 4.476954    & NaN     \\
+		AFG           & 1991.0 & NaN         & 6.900124    & NaN     \\
+		AFG           & 1992.0 & NaN         & 8.546107    & NaN     \\
+		AFG           & 1993.0 & NaN         & 8.790897    & NaN     \\
+		AFG           & 1994.0 & NaN         & 7.659796    & NaN    
+	\end{tabular} }
+	\begin{itemize}
+		\item Downloaded from \url{https://databank.worldbank.org/reports.aspx?source=world-development-indicators}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Penn World Table data}
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{cllllllll}
+		\multicolumn{1}{r}{\textbf{}} & \multicolumn{1}{r}{\textbf{country\_code}} & \multicolumn{1}{r}{\textbf{country}} & \multicolumn{1}{r}{\textbf{years}} & \multicolumn{1}{r}{\textbf{labour\_share\_income}} & \multicolumn{1}{r}{\textbf{delta}} & \multicolumn{1}{r}{\textbf{real gdp}} & \multicolumn{1}{r}{\textbf{pop}} & hc  \\
+		\textbf{40}                   & ABW                                        & Aruba                                & 1990                               & NaN                                                & 0.036517                           & 1693.878906                           & 0.062149                         & NaN \\
+		\textbf{41}                   & ABW                                        & Aruba                                & 1991                               & 0.648357                                           & 0.036903                           & 1828.760254                           & 0.064622                         & NaN \\
+		\textbf{42}                   & ABW                                        & Aruba                                & 1992                               & 0.648357                                           & 0.036488                           & 1936.334473                           & 0.068235                         & NaN \\
+		\textbf{43}                   & ABW                                        & Aruba                                & 1993                               & 0.648357                                           & 0.035478                           & 2077.835938                           & 0.072504                         & NaN \\
+		\textbf{44}                   & ABW                                        & Aruba                                & 1994                               & 0.648357                                           & 0.034092                           & 2248.299561                           & 0.076700                         & NaN
+	\end{tabular}
+}
+	\begin{itemize}
+		\item Downloaded from \url{https://www.rug.nl/ggdc/productivity/pwt/}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Education Index}
+	\begin{itemize}
+		\item Is a component of the Human Development Index (HDI)
+		\item Dataset was not formatted in a way that pandas' \texttt{read\_csv} could parse.
+		\item We used the lower-level \texttt{csv} library to construct a list that is then converted into a pandas \texttt{DataFrame} object.
+		\item Available at \url{http://hdr.undp.org/en/indicators/103706}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Python, caption=Processing the Education Index dataset]
+import csv, urllib
+ei_url = 'https://raw.githubusercontent.com/iatrogenic/Solow-TPROG/main/data/Education_index.csv'	
+	
+with urllib.request.urlopen(ei_url) as rsp:
+	# decode latin1 since some lines contain non-UTF8 characters.
+	csvfile = [l.decode('latin1') for l in rsp.readlines()]
+	ei = csv.reader(csvfile)
+	# remove metadata
+	raw = [row[1:] for row in list(ei)[6:-1]]
+	# remove all even columns
+	formatted_rows = []
+	for row in raw:
+		formatted_rows.append([row[0]] + row[1::2])
+
+cols = ['country'] + list(range(1990, 2020))
+education = pd.DataFrame(formatted_rows, columns=cols)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Education Index DataFrame}
+		\resizebox{\textwidth}{!}{%
+\begin{tabular}{cllllllllllll}
+	\multicolumn{1}{l}{} & country & 1990  & 1991  & 1992  & 1993  & 1994  & ... & 2015 & 2016 & 2017 & 2018 & 2019 \\ \hline
+	\textbf{1}           & Albania & 0.583 & 0.588 & 0.557 & 0.542 & 0.541 & ... & 0.753 & 0.745 & 0.747 & 0.743 & 0.746 \\
+	\textbf{2}           & Algeria & 0.385 & 0.395 & 0.405 & 0.414 & 0.424 & ... & 0.659 & 0.660 & 0.665 & 0.668 & 0.672 \\
+	\textbf{3}           & Andorra & ..    & ..    & ..    & ..    & ..    & ... & 0.718 & 0.722 & 0.713 & 0.720 & 0.720 \\
+	\textbf{...}         & ...     & ...   & ...   & ...   & ...   & ...   & ... & ...   & ...   & ...   & ...   & ...   \\
+	\textbf{205}         & World   & 0.450 & 0.456 & 0.456 & 0.469 & 0.474 & ... & 0.626 & 0.631 & 0.633 & 0.633 & 0.637
+\end{tabular} 
+}
+\end{frame}
+
+\begin{frame}{Further reshaping}
+	\begin{itemize}
+		\item Map country names into country codes
+		\item List time vertically, i.e. in panel data format
+	\end{itemize}
+	\begin{center}
+	\begin{tabular}{lll}
+	country code & year   & Education Index \\
+	AFG          & 1990.0 & 0.122           \\
+	AFG          & 1991.0 & 0.133           \\
+	AFG          & 1992.0 & 0.145           \\
+	AFG          & 1993.0 & 0.156           \\
+	AFG          & 1994.0 & 0.168          
+\end{tabular}
+	\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Python]
+	df['capital_share_income'] = round(1 - df['labour_share_income'], 2)
+	
+	# adjust scales and decimals
+	df['delta'] = df['delta'] * 100
+	df['real_gdp'] = df['real_gdp'] /10
+	
+	# create: real gdp per capita and decimals
+	df['real_gdp_per_capita'] = df['real_gdp'] / df['pop']
+
+	# final DataFrame
+	df_regression = df.groupby(['country_code'])['savings', '(n+g+delta)', 'pop', 'hc', 'Education Index'].agg('mean')
+	
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Final DataFrame}
+		\resizebox{\textwidth}{!}{%
+	\begin{tabular}{clllll}
+		\multicolumn{1}{l}{country code} & savings   & $n+g+\delta$ & pop        & hc       & Education Index \\ \hline
+		\textbf{ARG}                     & 17.515432 & 7.064752     & 38.496126  & 2.762353 & 0.749379        \\
+		\textbf{ARM}                     & 26.622005 & 5.725578     & 3.048512   & 3.082355 & 0.690714        \\
+		\textbf{AUS}                     & 25.985479 & 7.377094     & 20.442071  & 3.479699 & 0.897931        \\
+		\textbf{AUT}                     & 24.880684 & 6.400530     & 8.249491   & 3.178440 & 0.769207        \\
+		\textbf{BDI}                     & 11.208659 & 7.051932     & 7.618328   & 1.251119 & 0.275517        \\
+		\textbf{...}                     & ...       & ...          & ...        & ...      & ...             \\
+		\textbf{USA}                     & 21.313520 & 7.357352     & 291.347278 & 3.615634 & 0.871862        \\
+		\textbf{VEN}                     & 22.705581 & 8.675406     & 25.006332  & 2.253260 & 0.566480        \\
+		\textbf{ZAF}                     & 18.725002 & 8.536923     & 47.420789  & 2.298774 & 0.654655        \\
+		\textbf{ZMB}                     & 36.004405 & 12.728065    & 15.429866  & 2.440716 & 0.536556        \\
+		\textbf{ZWE}                     & 12.537147 & 6.781775     & 12.271189  & 2.227122 & 0.498862       
+	\end{tabular}
+}
+
+\begin{itemize}
+	\item We also removed three outlier countries.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Correlation Matrix}
+			\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|lllll}
+	\multicolumn{1}{l|}{} & Savings  & $n+g+\delta$ & Population       & Human Capital        & Education Index \\ \hline
+	Savings               & 1.000000 & 0.262102    & 0.337697  & 0.211706  & 0.189340        \\
+	$n+g+\delta$           & 0.262102 & 1.000000    & 0.254284  & -0.542124 & -0.547514       \\
+	Population                   & 0.337697 & 0.254284    & 1.000000  & -0.061961 & -0.079928       \\
+	Human Capital                    & 0.211706 & -0.542124   & -0.061961 & 1.000000  & 0.961376        \\
+	Education Index       & 0.189340 & -0.547514   & -0.079928 & 0.961376  & 1.000000       
+\end{tabular}
+}
+\end{frame}
+
+
+\begin{frame}{Performing the regressions}
+	\begin{itemize}
+		\item We perform three regressions using the ordinary least squares method:
+		\begin{itemize}
+			\item Baseline, Spec (i)
+			\item Baseline + Human Capital (PWT), Spec (ii)
+			\item Baseline + Education Index, Spec (iii)
+		\end{itemize}
+		\item We use the \texttt{statsmodel} library.
+		\item Both regressors and regressands are taken as logarithms of the corresponding variables in the \texttt{DataFrame}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll}
+	\multicolumn{4}{c}{Dependent variable: $\ln \left ( \frac{Y_{2018}}{L_{2018}} \right )$}                                                                                                                                        \\ \hline
+	\multicolumn{4}{c}{Model specifications}                                                                                                                                                                                    \\ \hline
+	& (i)                                                            & (ii)                                                          & (iii)                                                        \\
+	Constant                    & \begin{tabular}[c]{@{}l@{}}4.8457 ***\\ (2.938)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}3.4926 ***\\ (3.243)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}7.8708\\ (8.608)\end{tabular}     \\
+	$\ln(n_i + g_i + \delta_i)$ & \begin{tabular}[c]{@{}l@{}}-1.6198 ***\\ (-5.166)\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.2240\\ (0.759)\end{tabular}      & \begin{tabular}[c]{@{}l@{}}0.1980\\ (0.743)\end{tabular}     \\
+	$\ln(s_i)$                  & \begin{tabular}[c]{@{}l@{}}1.8834 ***\\ (3.382)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}0.1435\\ (0.442)\end{tabular}      & \begin{tabular}[c]{@{}l@{}}0.1501\\ (0.462)\end{tabular}     \\
+	$\ln(h_i)$                  &                                                                & \begin{tabular}[c]{@{}l@{}}3.2191 ***\\ (12.136)\end{tabular} &                                                              \\
+	$\ln(h_i^\prime)$           &                                                                &                                                               & \begin{tabular}[c]{@{}l@{}}2.7584 ***\\ (9.008)\end{tabular} \\ \hline
+	$N$                         & 102                                                            & 102                                                           & 102                                                          \\
+	$R^2$                       & 0.290                                                          & 0.716                                                         & 0.766                                                        \\
+	Adj. $R^2$                  & 0.276                                                          & 0.707                                                         & 0.758                                                        \\
+	F-stat                      & 19.07 ***                                                      & 128.7 ***                                                     & 59.16 ***                                                    \\
+	Jarque-Bera test stat       & 1.020                                                          & 10.772                                                        & 1.684                                                        \\
+	Skewness                    & -0.234                                                         & -0.384                                                        & -0.265                                                       \\
+	Kurtosis                    & 3.146                                                          & 4.395                                                         & 3.339                                                       
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[shrink=20]{Results (ceteris paribus analysis)}
+(i)
+\begin{align*}
+\uparrow 1\% & \, (n_i + g_i + \delta_i) & \Rightarrow &  \downarrow 1.62\% & \frac{Y_{i,2018}}{L_{i,2018}} \text{***}, & \, R^2 = 0.29, \bar{R}^2 = 0.28 \\
+\uparrow 1\% & \, (s_i) & \Rightarrow &  \uparrow 1.88\% & \frac{Y_{i,2018}}{L_{i,2018}} \text{***} &
+\end{align*}
+(ii)
+\begin{align*}
+\uparrow 1\% & \, (n_i + g_i + \delta_i) & \Rightarrow &  \uparrow 0.22\% & \frac{Y_{i,2018}}{L_{i,2018}} \text{}, & \, R^2 = 0.72, \bar{R}^2 = 0.71 \\
+\uparrow 1\% & \, (s_i) & \Rightarrow &  \uparrow 0.14\% & \frac{Y_{i,2018}}{L_{i,2018}} \text{} & \\
+\uparrow 1\% & \, (h_i) & \Rightarrow &  \uparrow 3.22\% & \frac{Y_{i,2018}}{L_{i,2018}}  \text{***} &
+\end{align*}
+(iii)
+\begin{align*}
+	\uparrow 1\% & \, (n_i + g_i + \delta_i) & \Rightarrow &  \uparrow 0.20\% & \frac{Y_{i,2018}}{L_{i,2018}} \text{}, & \, R^2 = 0.77, \bar{R}^2 = 0.76 \\
+	\uparrow 1\% & \, (s_i) & \Rightarrow &  \uparrow 0.15\% & \frac{Y_{i,2018}}{L_{i,2018}}  \text{} & \\
+	\uparrow 1\% & \, (h^\prime_i) & \Rightarrow &  \uparrow 2.76\% & \frac{Y_{i,2018}}{L_{i,2018}}  \text{***} &
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		Q\&A
+	\end{center}
+\end{frame}
+
+\end{document}
